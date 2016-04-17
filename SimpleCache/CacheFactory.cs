@@ -8,12 +8,12 @@ namespace SimpleCache
 {
     public class CacheFactory
     {
-        public ICache Create(CacheConfigurationOptions options)
+        public ICache<TKey> Create<TKey>(CacheConfigurationOptions options)
         {
             if (options == null)
                 throw new ArgumentNullException(nameof(options));
 
-            return new Cache();
+            return new Cache<TKey>(options.MaxNumberOfItems);
         }
     }
 }

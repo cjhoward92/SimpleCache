@@ -9,7 +9,7 @@ namespace SimpleCache.Tests
         public void Create_Success()
         {
             CacheFactory facotry = new CacheFactory();
-            var cache = facotry.Create(new CacheConfigurationOptions());
+            var cache = facotry.Create<int>(new CacheConfigurationOptions());
             Assert.NotNull(cache);
         }
 
@@ -19,7 +19,7 @@ namespace SimpleCache.Tests
             CacheFactory facotry = new CacheFactory();
             var ex = Assert.Throws<ArgumentNullException>(() =>
             {
-                facotry.Create(null);
+                facotry.Create<int>(null);
             });
             Assert.IsType<ArgumentNullException>(ex);
         }
