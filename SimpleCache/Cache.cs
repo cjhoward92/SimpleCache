@@ -21,12 +21,18 @@ namespace SimpleCache
         {
             get
             {
-                throw new NotImplementedException();
+                if (_set.ContainsKey(key))
+                    throw new InvalidOperationException();
+
+                return _set[key];
             }
 
             set
             {
-                throw new NotImplementedException();
+                if (_set.ContainsKey(key))
+                    throw new InvalidOperationException();
+
+                _set[key] = value;
             }
         }
 
@@ -40,25 +46,31 @@ namespace SimpleCache
 
         public void Add(CacheEntry entry)
         {
+            if (entry == null)
+                throw new ArgumentNullException(nameof(entry));
             if (NumberOfElements == _maxItems)
-                throw new InvalidOperationException();
+                throw new InvalidOperationException("No more items allowed in this cache!");
 
-            throw new NotImplementedException();
+            //TODO add generated expressions for key-type comparison (To avoid conversion errors)
+            if (_set.ContainsKey((TKey)entry.Key)) return;
+            _set.Add((TKey)entry.Key, entry.Value);
         }
 
         public void Expire()
         {
-            throw new NotImplementedException();
+            _set.Clear();
         }
 
         public void Remove(TKey key)
         {
-            throw new NotImplementedException();
+            if (_set.Count == 0) return;
+            if (!_set.ContainsKey(key)) return;
+            _set.Remove(key);
         }
 
         public void Remove(CacheEntry entry)
         {
-            throw new NotImplementedException();
+            Remove((TKey)entry.Key);
         }
     }
 }

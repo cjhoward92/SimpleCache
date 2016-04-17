@@ -6,13 +6,13 @@ namespace SimpleCache.Tests
     public class CacheTests
     {
         [Fact]
-        public void Cache_Success()
+        public void Add_Success()
         {
-            Cache cache = new Cache();
+            var cache = new Cache<int>(10);
             int key = 1;
             string value = "derp";
             CacheEntry entry = new CacheEntry(key, value);
-            cache.Cache(entry);
+            cache.Add(entry);
             Assert.True(cache.NumberOfElements == 1);
         }
     }
