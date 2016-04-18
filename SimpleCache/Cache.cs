@@ -23,7 +23,7 @@ namespace SimpleCache
         {
             get
             {
-                if (_set.ContainsKey(key))
+                if (!_set.ContainsKey(key))
                     throw new InvalidOperationException();
 
                 return _set[key];
@@ -31,7 +31,7 @@ namespace SimpleCache
 
             set
             {
-                if (_set.ContainsKey(key))
+                if (!_set.ContainsKey(key))
                     throw new InvalidOperationException();
 
                 _set[key] = value;
