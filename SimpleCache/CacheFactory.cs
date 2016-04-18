@@ -46,15 +46,8 @@ namespace SimpleCache
             if (!_activeCaches.ContainsKey(cacheName)) return null;
 
             var cache = _activeCaches[cacheName];
-            if (cache.GetType() != typeof(ICache<>))
+            if (cache.GetType().IsAssignableFrom(typeof(ICache<>).MakeGenericType(typeof(TKey))))
                 throw new Exception("Wat");
-
-            var generics = cache.GetType().GetGenericArguments();
-            if (generics.Count() == 0)
-                throw new Exception("Bad Cache!");
-
-            if (generics.First() != typeof(TKey))
-                throw new Exception("Bad still!");
 
             return cache as ICache<TKey>;
         }
