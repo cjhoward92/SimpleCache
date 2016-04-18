@@ -23,5 +23,18 @@ namespace SimpleCache.Tests
             });
             Assert.IsType<ArgumentNullException>(ex);
         }
+
+        [Fact]
+        public void CreateThenLocate_Success()
+        {
+            CacheFactory factory = new CacheFactory();
+            var options = new CacheConfigurationOptions();
+            options.CacheName = "TESTCACHE";
+            var cache = factory.Create<int>(options);
+            var secondCache = factory.Create<int>(options);
+
+            Assert.Equal("TESTCACHE", secondCache.Name);
+            Assert.Equal(cache, secondCache);
+        }
     }
 }
