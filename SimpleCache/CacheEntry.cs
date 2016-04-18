@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace SimpleCache
 {
+    //What needs to be added to this to make it worth while? I think it will be, just need ideas ATM
     public class CacheEntry
     {
         private object _key;
