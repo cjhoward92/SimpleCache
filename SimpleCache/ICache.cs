@@ -9,6 +9,7 @@ namespace SimpleCache
     public interface ICache<TKey>
     {
         int NumberOfElements { get; }
+        string Name { get; }
         void Add(CacheEntry entry);
         void Remove(CacheEntry entry);
         void Remove(TKey key);

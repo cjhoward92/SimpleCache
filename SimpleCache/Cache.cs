@@ -10,10 +10,12 @@ namespace SimpleCache
     {
         private readonly IDictionary<TKey, object> _set;
         private readonly int _maxItems;
+        private readonly string _name;
 
-        public Cache(int maxItems)
+        public Cache(int maxItems, string name)
         {
             _maxItems = maxItems;
+            _name = name;
             _set = new Dictionary<TKey, object>();
         }
 
@@ -41,6 +43,14 @@ namespace SimpleCache
             get
             {
                 return _set.Count;
+            }
+        }
+
+        public string Name
+        {
+            get
+            {
+                return _name;
             }
         }
 
